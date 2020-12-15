@@ -831,40 +831,30 @@ var domToImage = createCommonjsModule(function (module) {
 });
 
 var MakeDomImage = function (_a) {
-    var trigger = _a.trigger, domRef = _a.domRef, exportName = _a.exportName, _b = _a.format, format = _b === void 0 ? "png" : _b;
-    var _c = React.useState({
-        height: 0,
-        width: 0,
-        node: document.createElement("div"),
-    }), _d = _c[0], height = _d.height, width = _d.width, node = _d.node, setSize = _c[1];
-    React.useEffect(function () {
-        if (!!domRef.current) {
-            var node_1 = domRef.current;
-            var height_1 = node_1.offsetHeight;
-            var width_1 = node_1.offsetWidth;
-            setSize({ height: height_1, width: width_1, node: node_1 });
-        }
-    }, [domRef]);
+    var trigger = _a.trigger, domRef = _a.domRef, exportName = _a.exportName, _b = _a.format, format = _b === void 0 ? 'png' : _b;
     var onClickEvent = function () {
         makeImage();
     };
     var makeImage = function () { return __awaiter(void 0, void 0, void 0, function () {
-        var config, blob, url, link, prefix;
+        var node, height, width, config, blob, url, link, prefix;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
+                    node = domRef.current;
+                    height = node.offsetHeight;
+                    width = node.offsetWidth;
                     config = {
                         width: width,
-                        height: height,
+                        height: height
                     };
                     return [4 /*yield*/, domToImage.toBlob(node, config)];
                 case 1:
                     blob = _a.sent();
                     if (blob) {
                         url = window.URL.createObjectURL(blob);
-                        link = document.createElement("a");
+                        link = document.createElement('a');
                         prefix = exportName;
-                        if (format !== "open") {
+                        if (format !== 'open') {
                             link.download = prefix + "." + format;
                         }
                         link.href = url;

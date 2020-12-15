@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 interface Props {
     trigger: React.ReactElement;
     domRef: React.RefObject<any>;
