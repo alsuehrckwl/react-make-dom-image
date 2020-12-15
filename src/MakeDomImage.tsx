@@ -1,5 +1,5 @@
-import * as React from "react";
-import domtoimage from "dom-to-image";
+import * as React from 'react';
+import domtoimage from 'dom-to-image';
 interface Props {
   trigger: React.ReactElement;
   domRef: React.RefObject<any>;
@@ -11,42 +11,30 @@ const MakeDomImage: React.FunctionComponent<Props> = ({
   trigger,
   domRef,
   exportName,
-  format = "png",
+  format = 'png'
 }) => {
-  const [{ height, width, node }, setSize] = React.useState({
-    height: 0,
-    width: 0,
-    node: document.createElement("div"),
-  });
-
-  React.useEffect(() => {
-    if (!!domRef.current) {
-      const node = domRef.current;
-      const height = node.offsetHeight;
-      const width = node.offsetWidth;
-
-      setSize({ height, width, node });
-    }
-  }, [domRef]);
-
   const onClickEvent = () => {
     makeImage();
   };
 
   const makeImage = async () => {
+    const node = domRef.current;
+    const height = node.offsetHeight;
+    const width = node.offsetWidth;
+
     const config = {
       width,
-      height,
+      height
     };
 
     const blob = await domtoimage.toBlob(node, config);
 
     if (blob) {
       const url = window.URL.createObjectURL(blob);
-      const link = document.createElement("a");
+      const link = document.createElement('a');
       const prefix = exportName;
 
-      if (format !== "open") {
+      if (format !== 'open') {
         link.download = `${prefix}.${format}`;
       }
 
