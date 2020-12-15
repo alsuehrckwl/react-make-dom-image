@@ -47,9 +47,7 @@ const MakeDomImage: React.FunctionComponent<Props> = ({
     return;
   };
 
-  const Button = React.useMemo(() => {
-    return React.cloneElement(trigger, { onClick: onClickEvent });
-  }, [trigger]);
+  const Button = React.cloneElement(trigger, { onClick: onClickEvent });
 
   return <React.Fragment>{Button}</React.Fragment>;
 };
