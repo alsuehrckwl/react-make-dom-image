@@ -12,9 +12,9 @@ import babel from 'rollup-plugin-babel';
 import pkg from './package.json';
 
 const input = 'src/index.ts';
-const globals = { react: 'React', 'react-dom': 'ReactDOM', 'styled-components': 'styled' };
+const globals = { react: 'React', 'react-dom': 'ReactDOM' };
 const extensions = ['.js', '.jsx', '.ts', '.tsx'];
-const external = ['react', 'react-dom', 'styled-components'];
+const external = ['react', 'react-dom'];
 
 export default [
 	{
